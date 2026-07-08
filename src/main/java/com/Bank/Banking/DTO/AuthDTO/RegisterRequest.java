@@ -1,6 +1,7 @@
 package com.Bank.Banking.DTO;
 
 import com.Bank.Banking.Enum.Role;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class RegisterRequest {
 
     @NotNull(message = "Email is required")
-    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "Invalid email format")
+    @Email
     private String email;
 
     @NotNull(message = "Password is required")
