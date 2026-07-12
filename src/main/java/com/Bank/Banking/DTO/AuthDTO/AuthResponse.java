@@ -1,4 +1,4 @@
-package com.Bank.Banking.DTO;
+package com.Bank.Banking.DTO.AuthDTO;
 
 import com.Bank.Banking.Enum.Role;
 
