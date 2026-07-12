@@ -1,8 +1,8 @@
 package com.Bank.Banking.Controller;
 
-import com.Bank.Banking.DTO.AuthResponse;
-import com.Bank.Banking.DTO.LoginRequest;
-import com.Bank.Banking.DTO.RegisterRequest;
+import com.Bank.Banking.DTO.AuthDTO.AuthResponse;
+import com.Bank.Banking.DTO.AuthDTO.LoginRequest;
+import com.Bank.Banking.DTO.AuthDTO.RegisterRequest;
 import com.Bank.Banking.Service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) throws Exception {
@@ -38,7 +38,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) throws Exception {
         log.info("Register request received for email: {}", request.getEmail());
-        if(request.getEmail() == null || request.getPassword() == null || request.getRole() == null){
+        if(request.getEmail() == null || request.getPassword() == null){
             log.info("Register request failed for email: {}. Email, Password and Role are required.");
             throw new Exception("Email, Password and Role are required");
         }

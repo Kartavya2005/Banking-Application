@@ -1,5 +1,6 @@
 package com.Bank.Banking.Entity;
 
+import com.Bank.Banking.Enum.Branch;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +26,7 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private AppUser user;
+    private AuthUser user;
 
     @Column(nullable = false)
     private String firstName;
@@ -39,8 +40,8 @@ public class Employee {
     @Column(nullable = false)
     private String designation;
 
-    @Column(nullable = false)
-    private String branch;
+    @Enumerated(EnumType.STRING)
+    private Branch branch;
 
     @Column(nullable = false)
     private LocalDate joiningDate;

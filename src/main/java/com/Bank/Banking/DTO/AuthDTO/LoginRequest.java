@@ -1,12 +1,7 @@
-package com.Bank.Banking.DTO;
+package com.Bank.Banking.DTO.AuthDTO;
 
-import com.Bank.Banking.Enum.Role;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data

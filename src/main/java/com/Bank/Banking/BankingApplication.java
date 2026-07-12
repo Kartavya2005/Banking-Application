@@ -19,7 +19,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 )
 @OpenAPIDefinition(security = {@SecurityRequirement(name = "BearerAuth")})
 public class BankingApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BankingApplication.class, args);
 	}

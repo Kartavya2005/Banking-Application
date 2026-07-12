@@ -1,29 +1,32 @@
 package com.Bank.Banking.Service;
 
-import com.Bank.Banking.DTO.EmployeeDTO.EmployeeRequest;
+import com.Bank.Banking.DTO.AdminDTO.AdminCreateEmployeeRequest;
+import com.Bank.Banking.DTO.AdminDTO.AdminUpdateEmployeeRequest;
+import com.Bank.Banking.DTO.AuthDTO.ChangePasswordDTO;
 import com.Bank.Banking.DTO.EmployeeDTO.EmployeeResponse;
-
+import com.Bank.Banking.Entity.Employee;
+import com.Bank.Banking.Enum.Branch;
 
 import java.util.List;
 
-public interface EmployeeService {
+public interface AdminService {
 
-    EmployeeResponse getEmployeeById(Long employeeId);
+    Employee createEmployees(AdminCreateEmployeeRequest request);
 
-    List<EmployeeResponse> getAllEmployees();
+    Employee updateEmployees(Long employeeId, AdminUpdateEmployeeRequest request);
 
-    List<EmployeeResponse> getEmployeesByDepartment(String department);
+    Employee getEmployeeById(Long employeeId);
 
-    List<EmployeeResponse> getEmployeesByBranch(String branch);
-
-    List<EmployeeResponse> getEmployeesByDesignation(String designation);
-
-
-    List<EmployeeResponse> getActiveEmployees(boolean isActive);
-
-    EmployeeResponse getMyProfile();
-
-    EmployeeResponse updateMyProfile(EmployeeRequest request);
+    List<EmployeeResponse> getAllEmployees(String firstName, String email, String phoneNumber, String department, String address);
 
     List<EmployeeResponse> searchEmployees(String keyword);
+
+    void activateEmployee(Long employeeId);
+
+    void deactivateEmployee(Long employeeId);
+
+    void transferEmployee(Long employeeId, Branch newBranch);
+
+    void resetEmployeePassword(Long employeeId, ChangePasswordDTO request);
+
 }

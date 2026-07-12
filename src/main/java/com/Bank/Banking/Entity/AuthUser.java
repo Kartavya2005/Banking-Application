@@ -1,5 +1,6 @@
 package com.Bank.Banking.Entity;
 
+import com.Bank.Banking.Enum.Gender;
 import com.Bank.Banking.Enum.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class AuthUser {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = true, unique = true)
     private String phoneNumber;
 
     @Column(nullable = false)
@@ -30,6 +31,9 @@ public class AuthUser {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     private boolean enabled;
 }
