@@ -10,6 +10,7 @@ import com.Bank.Banking.Enum.Role;
 import com.Bank.Banking.Repository.CustomerRepository;
 import com.Bank.Banking.Repository.UserRepository;
 import com.Bank.Banking.Security.JwtService;
+import com.Bank.Banking.Service.NotificationService;
 import com.Bank.Banking.Service.AuthService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
     private final CustomerRepository customerRepository;
+    private final NotificationService notificationService;
 
     @Override
     public AuthResponse login(LoginRequest request) {
@@ -109,6 +111,14 @@ public class AuthServiceImpl implements AuthService {
         customer.setKyc(KYC.PENDING);
 
         customerRepository.save(customer);
+
+        notificationService.notifyUser(
+                authUser.getId(),
+                "Welcome to the Bank",
+                "Your customer account has been created successfully and is pending KYC approval.",
+                "AUTH",
+                String.valueOf(authUser.getId())
+        );
 
         String token = jwtService.generateToken(
                 new User(authUser.getEmail(), authUser.getPassword(), Collections.emptyList()), authUser.getRole());

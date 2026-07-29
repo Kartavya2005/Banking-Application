@@ -3,6 +3,7 @@ package com.Bank.Banking.Controller;
 import com.Bank.Banking.DTO.CustomerDTO.CustomerResponse;
 import com.Bank.Banking.DTO.CustomerDTO.UpdateCustomerRequest;
 import com.Bank.Banking.DTO.AuthDTO.ChangePasswordDTO;
+import com.Bank.Banking.Enum.KYC;
 import com.Bank.Banking.Service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,5 +34,13 @@ public class CustomerController {
         customerService.changePassword(request);
 
         return ResponseEntity.ok("Password changed successfully.");
+    }
+
+    @PutMapping("/complete-KYC")
+    public ResponseEntity<String> completeKYC(KYC kycStatus) {
+
+        customerService.completeKYC();
+        return ResponseEntity.ok("KYC completed successfully.");
+
     }
 }

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -44,6 +45,9 @@ public class Customer {
 
     @Enumerated(EnumType.STRING)
     private KYC kyc;
+
+    @OneToMany(mappedBy = "customer")
+    private List<BankAccount> bankAccounts;
 
 
 }
