@@ -8,6 +8,7 @@ import com.Bank.Banking.Entity.Employee;
 import com.Bank.Banking.Mapper.EmployeeMapper;
 import com.Bank.Banking.Repository.EmployeeRepository;
 import com.Bank.Banking.Repository.UserRepository;
+import com.Bank.Banking.Service.NotificationService;
 import com.Bank.Banking.Service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final NotificationService notificationService;
 
     private Employee getLoggedInEmployee() {
 
@@ -61,6 +63,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         log.info("Employee profile updated successfully: {}",
                 updatedEmployee.getUser().getEmail());
+        notificationService.notifyUser(
+                updatedEmployee.getUser().getId(),
+                "Profile updated",
+                "Your employee profile was updated successfully.",
+                "PROFILE",
+                String.valueOf(updatedEmployee.getEmployeeId())
+        );
 
         return EmployeeMapper.toResponse(updatedEmployee);
     }
@@ -96,5 +105,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         log.info("Password changed successfully for {}",
                 user.getEmail());
+        notificationService.notifyUser(
+                user.getId(),
+                "Password changed",
+                "Your employee account password was changed successfully.",
+                "SECURITY",
+                String.valueOf(employee.getEmployeeId())
+        );
     }
 }

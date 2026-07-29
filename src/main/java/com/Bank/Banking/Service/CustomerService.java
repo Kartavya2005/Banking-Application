@@ -12,4 +12,7 @@ public interface CustomerService {
     CustomerResponse updateProfile(UpdateCustomerRequest request);
 
     void changePassword(ChangePasswordDTO request);
+
+    void completeKYC();
+
 }
