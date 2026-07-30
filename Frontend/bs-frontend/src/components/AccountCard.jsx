@@ -1,0 +1,1 @@
+export default function AccountCard() { return <div>Account Card</div>; }
